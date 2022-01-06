@@ -18,11 +18,13 @@ const PORT = process.env.PORT || 3000;
 const homepage = require("./routes/index");
 const productRoutes = require("./routes/productRoutes");
 
+app.use("/", express.static(path.join(__dirname, "public")));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/", homepage);
+// app.use("/", homepage);
 app.use("/products", productRoutes);
 
 app.listen(PORT, () => {

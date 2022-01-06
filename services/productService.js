@@ -8,13 +8,29 @@ const products = require("../models/products");
 const db = mongoose.connection;
 
 class Product {
-	createAllProducts = async (pname, price, stockCount, productId) => {};
+	addProduct = async (pname, price, stockCount, productId, pcategory) => {
+		try {
+			let obj = { pname, price, stockCount, productId, pcategory };
+
+			console.log(obj);
+
+			await db.collection("products").insert(obj);
+
+			return { success: true, message: "Product created" };
+		} catch (err) {
+			console.log(err);
+			return {
+				success: false,
+				message: "Error in creating the entry for the product",
+			};
+		}
+	};
 
 	getAllProducts = async () => {
 		try {
 			const resp = await products.find({});
 
-			return { success: true, message: data };
+			return { success: true, message: resp };
 		} catch (err) {
 			return { success: false, message: err.message };
 		}
@@ -26,3 +42,11 @@ class Product {
 	};
 }
 module.exports = exports = new Product();
+
+// {
+// 	pname: "nike",
+// 	price: "1200",
+// 	stockCount: 10,
+// 	productId: 1,
+// 	pcategory: "shoes"
+// }
