@@ -1,12 +1,13 @@
 const productService = require("../services/productService");
 
-// finds all the product
-const getAllProduct = async (req, res, next) => {
+// Controller to find all the product
+const getAllProduct = async (req, res) => {
 	try {
 		let resp = await productService.getAllProducts();
 
 		if (resp.success == true) {
-			res.send({ success: true, message: resp.message });
+			console.log(resp.message);
+			res.json({ success: true, message: resp.message });
 		} else {
 			res.send({ success: false, message: "Error in getting Product List" });
 		}
@@ -16,7 +17,8 @@ const getAllProduct = async (req, res, next) => {
 	}
 };
 
-const addProduct = async (req, res, next) => {
+// Controller to add a product
+const addProduct = async (req, res) => {
 	try {
 		let { price, pname, pcategory, productId, stockCount } = req.body;
 
@@ -40,7 +42,45 @@ const addProduct = async (req, res, next) => {
 	}
 };
 
+// Controller for editing products
+const editProduct = async (req, res) => {
+	try {
+		let { productId, stockCount, price } = req.body;
+
+		let resp = await productService.editProduct(productId, price, stockCount);
+
+		if (resp.success == true) {
+			res.send({ success: true, message: "Product edited successfully" });
+		} else {
+			res.send({ success: false, message: res.message });
+		}
+	} catch (err) {
+		res.send({ success: false, message: "Error in edit product controller" });
+	}
+};
+
+const deleteProduct = async (req, res) => {
+	try {
+		let id = req.body.productId;
+
+		let resp = await productService.deleteProduct(id);
+
+		if (resp.success == true) {
+			res.send({ success: true, message: "Product Deleted" });
+		} else {
+			res.send({ success: false, message: "Error in delete Product Service" });
+		}
+	} catch (err) {
+		res.send({
+			success: false,
+			message: "Error in delete Product controller ",
+		});
+	}
+};
+
 module.exports = {
 	getAllProduct,
+	editProduct,
 	addProduct,
+	deleteProduct,
 };

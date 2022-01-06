@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var bcrypt = require("bcryptjs");
 
 require("dotenv").config();
 
@@ -32,5 +31,5 @@ var Products = (module.exports = mongoose.model(
 ));
 
 module.exports.getProductById = function (id, callback) {
-	User.findById(id, callback);
+	Products.findById(id, callback);
 };

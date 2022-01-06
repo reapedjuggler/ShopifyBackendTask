@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-// app.use("/", homepage);
+app.use("/", homepage);
 app.use("/products", productRoutes);
 
 app.listen(PORT, () => {
