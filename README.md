@@ -1,8 +1,6 @@
 - **Title:**
-  Open-KYC provides a solution for redudant kyc requests, all you need to do is sign-up once on the platform and get verified by any one of the Banks and
-  then save yourself from filling those troublesome forms again, simply apply for KYC with click of a button.Open-Kyc is an Open-Source decentralized application running on r3Corda and a Nodejs server in the Back-end and Reactjs in the front-end, It can be easily integrated with your kyc portals too.
-
-</br>
+  A basic CRUD application for Shopify back-end intern task
+  </br>
 
 - **Pre-Requisites**
 
@@ -83,18 +81,17 @@
 - Fork and Clone the repository
 
 ```sh
-https://github.com/reapedjuggler/AmexHack
-```
+https://github.com/reapedjuggler/ShopifyBackendTask/tree
 
 - Move into the project folder
 
 ```sh
 cd server
-```
+````
 
 - Install necessary node-modules
 
-````
+````sh
 npm i
 
 - Setup `.env` file
