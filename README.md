@@ -17,8 +17,9 @@
 
 ---
 
-`/products`
-
+```sh
+/products
+```
   <p>
   Deals with the CRUD operation of the data of the inventory items
   </p> 
@@ -82,17 +83,19 @@
 
 ```sh
 https://github.com/reapedjuggler/ShopifyBackendTask/tree
+```
 
 - Move into the project folder
 
 ```sh
 cd server
-````
+```
 
 - Install necessary node-modules
 
-````sh
+```sh
 npm i
+```
 
 - Setup `.env` file
 
