@@ -85,7 +85,7 @@
 - Fork and Clone the repository
 
 ```sh
-https://github.com/reapedjuggler/ShopifyBackendTask/tree
+https://github.com/reapedjuggler/ShopifyBackendTask
 ```
 
 - Move into the project folder
