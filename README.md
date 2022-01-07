@@ -2,6 +2,9 @@
   A basic CRUD application for Shopify back-end intern task
   </br>
 
+- **Description**
+  For more reference checkout [Project](https://docs.google.com/document/d/1vVlAvNAGrfrN8h9Rg4tJuRz8QErnd1FV9z27zyYjaf8/edit?usp=sharing) report
+
 - **Pre-Requisites**
 
 ---
