@@ -59,6 +59,7 @@ const editProduct = async (req, res) => {
 	}
 };
 
+// Controller for deleting a product
 const deleteProduct = async (req, res) => {
 	try {
 		let id = req.body.productId;
@@ -78,9 +79,30 @@ const deleteProduct = async (req, res) => {
 	}
 };
 
+// controller for exporting a products data to a CSV file
+const exportToCSV = async (req, res) => {
+	try {
+		let id = req.body.productId;
+
+		let resp = await productService.exportToCSV(id);
+
+		if (resp.success == true) {
+			res.send({ success: true, message: "Product Exported to CSV file" });
+		} else {
+			res.send({
+				success: false,
+				message: "Error in export CSV Product Service",
+			});
+		}
+	} catch (err) {
+		res.send({ success: false, message: "Error in exporting product to CSV" });
+	}
+};
+
 module.exports = {
 	getAllProduct,
 	editProduct,
 	addProduct,
 	deleteProduct,
+	exportToCSV,
 };

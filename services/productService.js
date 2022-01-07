@@ -1,5 +1,8 @@
 // Constants
 const mongoose = require("mongoose");
+const ExportToCsv = require("export-to-csv").ExportToCsv;
+const fs = require("fs");
+// import { ExportToCsv } from 'export-to-csv';
 
 // Models
 const products = require("../models/products");
@@ -86,7 +89,46 @@ class Product {
 			} else {
 				return { success: false, message: "Error in editing the product" };
 			}
-		} catch (err) {}
+		} catch (err) {
+			return { success: false, message: "Error in editing product" };
+		}
+	};
+
+	// Service to export a particular product's data to a CSV file
+	exportToCSV = async productId => {
+		try {
+			let resp = await db
+				.collection("products")
+				.find({ productId: productId })
+				.toArray();
+
+			console.log(resp);
+
+			// Options for configuring the CSV file
+			const options = {
+				fieldSeparator: ",",
+				quoteStrings: '"',
+				decimalSeparator: ".",
+				showLabels: true,
+				showTitle: true,
+				title: `Product ${productId} details`,
+				useTextFile: false,
+				useBom: true,
+				useKeysAsHeaders: true,
+			};
+
+			const exportToCsv = new ExportToCsv(options);
+			const data = exportToCsv.generateCsv(resp, true);
+
+			fs.appendFile("productsData.csv", data, function (err) {
+				if (err) throw err;
+				console.log("Saved!");
+			});
+
+			return { success: true, message: "Results saved in a CSV file" };
+		} catch (err) {
+			return { success: false, message: "Error in exporting to CSV file" };
+		}
 	};
 }
 
